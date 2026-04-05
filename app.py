@@ -6,11 +6,20 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import io
 import base64
+import os
 
 app = Flask(__name__)
 
-model = joblib.load("final_deployment_model.pkl")
-print("✅ Model loaded! Features:", list(model.feature_names_in_))
+# ── Absolute path fix for Render ──
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "final_deployment_model.pkl")
+
+try:
+    model = joblib.load(MODEL_PATH)
+    print("✅ Model loaded! Features:", list(model.feature_names_in_))
+except Exception as e:
+    print(f"❌ Model load failed: {e}")
+    model = None
 
 AREAS = ['Adajan', 'Athwa', 'CityLight', 'Dindoli', 'Katargam',
          'Pal', 'Piplod', 'Udhna', 'Varachha', 'Vesu']
@@ -25,6 +34,9 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    if model is None:
+        return render_template("index.html", areas=AREAS, localities=LOCALITIES,
+                               error_text="⚠️ Model not loaded. Please check server logs.")
     try:
         area       = request.form.get("area", "")
         locality   = request.form.get("locality", "")
