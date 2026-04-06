@@ -30,25 +30,6 @@ A Machine Learning-based web application that predicts house prices in Surat bas
 
 ---
 
-## 📂 Project Structure
-
-```
-house-price-prediction-surat/
-│
-├── house_price_app/
-│   ├── app.py
-│   ├── final_deployment_model.pkl
-│   ├── requirements.txt
-│   ├── static/
-│   │   └── style.css
-│   └── templates/
-│       └── index.html
-│
-├── requirements.txt
-├── runtime.txt
-└── README.md
-```
-
 ---
 
 ## ⚙️ Installation & Setup
