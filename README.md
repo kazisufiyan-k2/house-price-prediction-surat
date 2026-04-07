@@ -5,13 +5,11 @@ A Machine Learning-based web application that predicts house prices in Surat bas
 ---
 
 ## 🚀 Live Demo
-
-🔗 Coming Soon (Deploy on Render)
+(Deploy on Render)
 
 ---
 
 ## 📌 Features
-
 * 📊 Predict house prices using trained ML model
 * 🧠 Built with Scikit-learn
 * 🌐 User-friendly web interface using Flask
